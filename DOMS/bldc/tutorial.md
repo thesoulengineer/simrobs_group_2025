@@ -31,21 +31,35 @@ pip install -e .
 ```
 5. В окружении поднять CAN:
    1. Обновить список пакетов
-   ```sudo apt update -y```
+   ```
+   sudo apt update -y
+   ```
    2. Установить драйвер slcand
-   ```sudo apt install can-utils```
+   ```
+   sudo apt install can-utils
+   ```
    3. Проверить установку
-   ```which slcand```
+   ```
+   which slcand
+   ```
    Должен выбать путь, что-то типа /usr/bin/slcand
    4. Проверить USB устройство и куда оно подключилось
-   ```ls /dev/ | grep ttyACM```
+   ```
+   ls /dev/ | grep ttyACM
+   ```
    (например мне выдало ttyACM0)
    5. Создать подключение
-   ```sudo slcand -o -c -s8 /dev/ttyACM0 can0```
+   ```
+   sudo slcand -o -c -s8 /dev/ttyACM0 can0
+   ```
    6. Поднять устройство
-   ```sudo ip link set up can0```
+   ```
+   sudo ip link set up can0
+   ```
    7. И наконец-то: 
-   ```candump can0```
+   ```
+   candump can0
+   ```
 6. Чтобы скрипты заработали, они должны находиться с папке с драйвером
 
 
@@ -80,19 +94,33 @@ pip install -e .
 ```
 5. Set up CAN in the environment:
    1. Update the package list
-   ```sudo apt update -y```
+   ```
+   sudo apt update -y
+   ```
    2. Install the slcand driver
-   ```sudo apt install can-utils```
+   ```
+   sudo apt install can-utils
+   ```
    3. Verify the installation
-   ```which slcand```
+   ```
+   which slcand
+   ```
    It should show a path, something like /usr/bin/slcand
    4. Check the USB device and where it connected
-   ```ls /dev/ | grep ttyACM```
+   ```
+   ls /dev/ | grep ttyACM
+   ```
    (for example, it showed ttyACM0 for me)
    5. Create the connection
-   ```sudo slcand -o -c -s8 /dev/ttyACM0 can0```
+   ```
+   sudo slcand -o -c -s8 /dev/ttyACM0 can0
+   ```
    6. Bring up the device
-   ```sudo ip link set up can0```
+   ```
+   sudo ip link set up can0
+   ```
    7. And finnaly
-   ```candump can0```
+   ```
+   candump can0
+   ```
 6. For the scripts to work, they must be located in the driver folder
