@@ -37,7 +37,7 @@
 
     <default>
         <joint damping="1"/>
-        <geom density="3000" friction="1 0.1 0.1"/>
+        <geom density="1000" friction="1 0.1 0.1"/>
     </default>
 
     <worldbody>
