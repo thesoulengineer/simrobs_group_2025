@@ -1,0 +1,162 @@
+<mujoco model="two_link_hopper">
+
+    <compiler angle="degree"/>
+    <option timestep="0.002" gravity="0 0 -9.81"/>
+
+    <visual>
+        <quality shadowsize="2048"/>
+        <map znear="0.01"/>
+    </visual>
+
+    <asset>
+
+        <!-- Sky -->
+        <texture name="skybox"
+                 type="skybox"
+                 builtin="gradient"
+                 rgb1="0.3 0.5 0.8"
+                 rgb2="0.9 0.9 1"
+                 width="512"
+                 height="512"/>
+
+        <!-- Checker ground -->
+        <texture name="ground_tex"
+                 type="2d"
+                 builtin="checker"
+                 rgb1="0.2 0.3 0.4"
+                 rgb2="0.1 0.15 0.2"
+                 width="512"
+                 height="512"/>
+
+        <material name="ground_mat"
+                  texture="ground_tex"
+                  texrepeat="20 20"
+                  reflectance="0.1"/>
+
+    </asset>
+
+    <default>
+        <joint damping="1"/>
+        <geom density="3000" friction="1 0.1 0.1"/>
+    </default>
+
+    <worldbody>
+
+        <!-- Directional light -->
+        <light name="sun"
+               pos="0 0 6"
+               dir="0 0 -1"
+               directional="true"
+               diffuse="1 1 1"
+               specular="0.2 0.2 0.2"
+               castshadow="true"/>
+
+        <!-- Ground -->
+        <geom name="ground"
+              type="plane"
+              size="10 10 0.1"
+              material="ground_mat"/>
+
+        <!-- Base (twice bigger) -->
+        <body name="base" pos="0 0 1">
+
+            <!-- Horizontal motion -->
+            <joint name="x_slide"
+                  type="slide"
+                  axis="1 0 0"/>
+
+            <!-- Vertical motion -->
+            <joint name="z_slide"
+                  type="slide"
+                  axis="0 0 1"/>
+
+            <geom type="box"
+                  size="0.16 0.10 0.10"
+                  rgba="0.8 0.2 0.2 1"/>
+
+            <!-- Hip revolute cylinder -->
+            <geom type="cylinder"
+                  size="0.04 0.04"
+                  pos="0 0 -0.10"
+                  quat="0.707 0.707 0 0"
+                  rgba="0.2 0.2 0.8 1"/>
+
+            <!-- THIGH -->
+            <body name="thigh"
+                  pos="0 0 -0.10"
+                  euler="0 -45 0">
+
+                <joint name="hip"
+                       type="hinge"
+                       axis="0 1 0"/>
+
+                <!-- Link -->
+                <geom type="box"
+                      size="0.04 0.04 0.25"
+                      pos="0 0 -0.25"
+                      rgba="0.2 0.2 0.8 1"/>
+
+                <!-- Upper joint -->
+                <geom type="cylinder"
+                      size="0.04 0.04"
+                      pos="0 0 0"
+                      quat="0.707 0.707 0 0"
+                      rgba="0.2 0.2 0.8 1"/>
+
+                <!-- Lower joint -->
+                <geom type="cylinder"
+                      size="0.04 0.04"
+                      pos="0 0 -0.5"
+                      quat="0.707 0.707 0 0"
+                      rgba="0.2 0.2 0.8 1"/>
+
+                <!-- SHIN -->
+                <body name="shin"
+                      pos="0 0 -0.5"
+                      euler="0 90 0">
+
+                    <joint name="knee"
+                           type="hinge"
+                           axis="0 1 0"/>
+
+                    <!-- Link -->
+                    <geom type="box"
+                          size="0.04 0.04 0.25"
+                          pos="0 0 -0.25"
+                          rgba="0.2 0.2 0.8 1"/>
+
+                    <!-- Upper joint -->
+                    <geom type="cylinder"
+                          size="0.04 0.04"
+                          pos="0 0 0"
+                          quat="0.707 0.707 0 0"
+                          rgba="0.2 0.2 0.8 1"/>
+
+                    <!-- Lower joint -->
+                    <geom type="cylinder"
+                          size="0.04 0.04"
+                          pos="0 0 -0.5"
+                          quat="0.707 0.707 0 0"
+                          rgba="0.2 0.2 0.8 1"/>
+
+                    <!-- Contact point -->
+                    <geom name="foot"
+                          type="sphere"
+                          pos="0 0 -0.5"
+                          size="0.04"
+                          friction="2 0.1 0.1"
+                          rgba="0.2 0.2 0.8 1"/>
+
+                </body>
+            </body>
+
+        </body>
+
+    </worldbody>
+
+    <actuator>
+        <motor joint="hip" gear="10"/>
+        <motor joint="knee" gear="10"/>
+    </actuator>
+
+</mujoco>
