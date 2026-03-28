@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import time
 
 # Load model
-model = mujoco.MjModel.from_xml_path("DOMS/tutorials/two_link_hopper.xml")
+model = mujoco.MjModel.from_xml_path("DOMS/hopper_robot/two_link_hopper.xml")
 data = mujoco.MjData(model)
 
 # Get joint indices

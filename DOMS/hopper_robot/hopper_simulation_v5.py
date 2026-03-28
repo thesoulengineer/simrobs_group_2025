@@ -6,7 +6,7 @@ import random
 import time
 
 class COTOptimizer:
-    def __init__(self, xml_path="DOMS/tutorials/two_link_hopper_2_dof.xml", sim_duration=3.0):
+    def __init__(self, xml_path="DOMS/hopper_robot/two_link_hopper_2_dof.xml", sim_duration=3.0):
         self.xml_path = xml_path
         self.sim_duration = sim_duration
         
@@ -363,7 +363,7 @@ def run_optimization():
     
     # Create optimizer
     optimizer = COTOptimizer(
-        xml_path="DOMS/tutorials/two_link_hopper_2_dof.xml",
+        xml_path="DOMS/hopper_robot/two_link_hopper_2_dof.xml",
         sim_duration=3.0  # Shorter duration for faster optimization
     )
     
@@ -406,7 +406,7 @@ def test_manual_parameters():
         15.0     # knee_kd
     ]
     
-    optimizer = COTOptimizer("DOMS/tutorials/two_link_hopper_2_dof.xml")
+    optimizer = COTOptimizer("DOMS/hopper_robot/two_link_hopper_2_dof.xml")
     
     print("Parameters:")
     optimizer._print_params(manual_params)

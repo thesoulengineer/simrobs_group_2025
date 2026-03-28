@@ -6,7 +6,7 @@ from collections import deque
 import time
 
 class TwoLinkHopperSimulator:
-    def __init__(self, xml_path="DOMS/tutorials/two_link_hopper_2_dof.xml"):
+    def __init__(self, xml_path="DOMS/hopper_robot/two_link_hopper_2_dof.xml"):
         self.model = mujoco.MjModel.from_xml_path(xml_path)
         self.data = mujoco.MjData(self.model)
         self.viewer = None
@@ -162,7 +162,7 @@ class TwoLinkHopperSimulator:
 # Main execution
 if __name__ == "__main__":
     # Create simulator
-    sim = TwoLinkHopperSimulator("DOMS/tutorials/two_link_hopper_2_dof.xml")
+    sim = TwoLinkHopperSimulator("DOMS/hopper_robot/two_link_hopper_2_dof.xml")
     
     # Run simulation
     sim.run(duration=5, control=True)

@@ -6,7 +6,7 @@ from collections import deque
 import time
 
 class TwoLinkHopperSimulator:
-    def __init__(self, xml_path="DOMS/tutorials/two_link_hopper_2_dof.xml"):
+    def __init__(self, xml_path="DOMS/hopper_robot/two_link_hopper_2_dof.xml"):
         self.model = mujoco.MjModel.from_xml_path(xml_path)
         self.data = mujoco.MjData(self.model)
         self.viewer = None
@@ -60,7 +60,7 @@ class TwoLinkHopperSimulator:
     def compute_hopping_control(self, t, desired_frequency=2.0):
         """Compute control torques for hopping forward"""
         # Desired trajectories with forward lean
-        hip_desired = 30 * np.sin(2 * np.pi * desired_frequency * t) - 10  # Lean forward
+        hip_desired = 30 * np.sin(2 * np.pi * desired_frequency * t) + 10  # Lean forward
         knee_desired = 45 * np.sin(2 * np.pi * desired_frequency * t + np.pi) + 10  # Adjust knee
         
         # Convert to radians
@@ -213,7 +213,7 @@ class TwoLinkHopperSimulator:
 # Main execution
 if __name__ == "__main__":
     # Create simulator
-    sim = TwoLinkHopperSimulator("DOMS/tutorials/two_link_hopper_2_dof.xml")
+    sim = TwoLinkHopperSimulator("DOMS/hopper_robot/two_link_hopper_2_dof.xml")
     
     # Run simulation
     sim.run(duration=5, control=True)
